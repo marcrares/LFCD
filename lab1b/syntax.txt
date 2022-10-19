@@ -1,0 +1,22 @@
+Syntax:
+	<declaration>  ::= identifier is <type>
+	<declaration2> ::= identifier is type of <const>
+	<declaration3> ::= identifier is <typearray> <type>
+	<declaration4> ::= identifier is <typearray> <type> of (<arrayconst>)
+	<arrayconst>   ::= <const> | <const> , <arrayconst>
+	<const>	       ::= nrconst | strconst | boolconst
+	<type>	       ::= integer | string | boolean
+	<typearray>    ::= array[nr]
+	
+	<cmpdstmt>     ::= <stmt> | <stmt>;<cmpdstmt>
+	<stmt>	       ::= <assignstmt> | <vrfstmt> | <untilstmt> | <iostmt>| <valstmt>
+	<assignstmt>   ::= identifier <- <expression>
+	<expression>   ::= <value> | <value> <operation> <expression>
+	<value>        ::= const | identifier
+	<operation>    ::= + | - | * | / | %
+	<vrfstmt>      ::= verify (<condition>) cmpdstmt | verify (<condition>) otherwise cmpdstmt
+	<condition>    ::= expression <relation> expression
+	<relation>     ::= > | < | <= | >= | =
+	<untilstmt>    ::= until (relation) cmpdstmt
+	<iostmt>       ::= read (identifier) | write (value)
+	<valstmt>      ::= val (value)

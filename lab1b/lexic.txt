@@ -1,0 +1,29 @@
+A. Alphabet:
+	- Upper (A-Z) and lower (a-z) case letters of the English alphabet
+	- Decimal digits (0-9)
+B. Lexic:
+	1. Special symbols
+		- operators + - * / % < > <= >= = <-
+		- separators ; ( ) space [ ] " "
+		- reserved words - integer array string boolean until is of verify otherwise read write val
+	
+	2. Identifiers
+		- a sequence of letters and digits, such that the first character is a letter
+		- <identifier> ::= <letter> | <letter> <seq_l_d>
+		- <seq_l_d>    ::= <l_d> | <l_d> <seq_l_d>
+		- <l_d>        ::= <letter> | <digit>
+		- <letter>     ::= A|B|...|Z|a|b|...|c
+		- <digit>      ::= 0|1|2|...|9
+ 	3. Constants
+		a. Integer
+			- <nrconst> ::= +<nr>|-<nr>|nr
+			- <nr>      ::= digit | digit <nr>
+		b. String
+			- <strconst> ::= "<str>"
+			- <str>      ::= letter | letter <str>
+		c. Boolean
+			- <boolconst> ::= True|False
+		
+			
+	
+
