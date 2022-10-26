@@ -2,7 +2,7 @@
 
 class SymbolTable<T> {
 
-    private val size: Int = 200;
+    private var size: Int = 1;
     private var storage: MutableList<Pair<String, T>?> = MutableList(size) { null }
     private var realSize = 0
 
@@ -11,10 +11,11 @@ class SymbolTable<T> {
         key.forEach {
             index += it.code * probe
         }
-        return index % 200
+        return index % size
     }
 
     fun put(id: String, elem: T) {
+        resize()
         var probe = 1
         var index = hash(id, probe)
         var item = storage[index]
@@ -24,15 +25,16 @@ class SymbolTable<T> {
             item = storage[index]
         }
         if (item == null)
-            realSize ++
+            realSize++
         storage[index] = Pair(id, elem)
     }
 
-    fun remove(id: String) : Boolean {
+    fun remove(id: String): Boolean {
+        resize()
         var probe = 1
         var index = hash(id, probe)
         var item = storage[index]
-        while (item != null && item.first != id){
+        while (item != null && item.first != id) {
             probe *= 2
             index = hash(id, probe)
             item = storage[index]
@@ -45,21 +47,38 @@ class SymbolTable<T> {
 
     }
 
-    fun resize() {
+    private fun resize() {
+        val alpha = realSize.toDouble() / size
+        if (alpha < 0.7)
+            return
+        size *= 2
+        val newList = MutableList<Pair<String, T>?>(size) { null }
+        newList.addAll(storage)
+        storage = MutableList(size) {null}
+        newList.filterNotNull().forEach {
+            val id = it.first
+            var probe = 1
+            var index = hash(id, probe)
+            var item = storage[index]
+            while (item != null && item.first != id) {
+                probe *= 2
+                index = hash(id, probe)
+                item = storage[index]
+            }
+            storage[index] = Pair(id, it.second)
+        }
     }
 
-    fun isPresent(id: String): Boolean {
+    fun get(id: String): T? {
         var probe = 1
         var index = hash(id, probe)
         var item = storage[index]
-        while (item != null && item.first != id){
+        while (item != null && item.first != id) {
             probe *= 2
             index = hash(id, probe)
             item = storage[index]
         }
-        return item?.let {
-            return@let true
-        } ?: false
+        return item?.second
     }
 
     fun elements(): List<Pair<String, T>> {
@@ -73,6 +92,10 @@ fun main() {
     table.put("ana", 10)
     table.put("ana", 20)
     table.put("ionut", 30)
-    table.remove("ana")
+    table.put("a", 40)
+    table.put("b", 50)
+    table.put("f", 90)
+    table.remove("f")
+
     println(table.elements())
 }
