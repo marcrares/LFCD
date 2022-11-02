@@ -1,0 +1,19 @@
+LanguageSpec
+
+- getType(token: String) - return the type of the given token, if it corresponds to one of the 5 subtypes of ENUM Type
+    - if it doesn't belong to token category, null is returned
+
+- isIdentifier(token: String) - returns true if given token matches the identifier regex
+
+- isConstant(token: String) - returns true if given token matches the separator regex
+
+- isSeparator(token: String) - returns true if given belongs to the list of separators
+
+- isOperator(token: String) - returns true if given belongs to the list of operators
+
+- isKeyword(token: String) - returns true if given belongs to the list of keywords
+
+
+PIF
+
+- addToken(token: String, index: Int)

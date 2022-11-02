@@ -1,0 +1,13 @@
+a is integer;
+b is integer;
+read(a);
+read(b);
+until (a = b)
+	verify (a > b)
+		a <- a - b;
+	otherwise
+		b <- b - a;
+verify (a = 1)
+	write("True");
+otherwise
+	write("False");

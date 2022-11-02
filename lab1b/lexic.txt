@@ -3,8 +3,8 @@ A. Alphabet:
 	- Decimal digits (0-9)
 B. Lexic:
 	1. Special symbols
-		- operators + - * / % < > <= >= = <-
-		- separators ; ( ) space [ ] " "
+		- operators + - * / % < > <= >= != = <- & |
+		- separators ; ( ) space [ ] \t \n
 		- reserved words - integer array string boolean until is of verify otherwise read write val
 	
 	2. Identifiers

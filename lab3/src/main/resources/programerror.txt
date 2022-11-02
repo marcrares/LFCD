@@ -1,0 +1,15 @@
+numbers is array[20] integer;
+i is integer;
+1n is integer;
+sum is integer of 0;
+read(1n);
+i <- 0;
+until (i = 1n)
+	read(numbers[i]);
+	i <- i + 1;
+i <- 0;
+until (i = 1n)
+	sum <- sum + numbers[i];
+	i <- i + 1;
+write("Suma este');
+write(sum);

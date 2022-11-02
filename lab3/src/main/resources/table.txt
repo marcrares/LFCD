@@ -1,0 +1,6 @@
+The SymbolTable uses a HashMap with linear probing as conflict resolution method
+28 - a
+29 - b
+30 - c
+39 - diff1
+40 - diff2
