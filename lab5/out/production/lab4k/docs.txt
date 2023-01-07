@@ -1,0 +1,5 @@
+LR0 ITEM
+
+- contains the left side of a production, the symbols on the right side, the position of the dot and the id of the
+corresponding production
+-

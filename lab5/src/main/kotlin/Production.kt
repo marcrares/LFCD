@@ -1,10 +1,15 @@
 class Production(
     val start: String,
-    val rules: List<List<String>>
+    val right: List<String>,
+    val id: Int
 ) {
 
     override fun toString(): String {
-       TODO()
+        var out = "$start ->"
+        right.forEach {
+            out += " $it"
+        }
+        return out
     }
 
 }

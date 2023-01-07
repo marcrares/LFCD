@@ -1,0 +1,22 @@
+program declarationList declaration assignStmt vrfStmt untilStmt ioStmt valStmt
+
+program
+program -> declarationList
+declarationList -> declaration declarationList | epsilon
+declaration -> simpleDeclaration | arrayDeclaration
+simpleDeclaration -> IDENTIFIER is type ["of" CONST]
+arrayDeclaration -> IDENTIFIER is typeArray type [of ARRAYCONST]
+type -> integer | string | boolean
+typeArray -> array[NRCONST]
+cmpdStmt -> stmt | stmt ; cmpdStmt
+stmt -> assignStmt | vrfStmt | untilStmt | ioStmt | valStmt
+assignStmt -> IDENTIFIER <- expression
+expression -> value | value operation expression
+value -> CONST | IDENTIFIER
+operation -> + | - | * | / | % | && | ||
+vrfStmt -> verify (condition) cmpdStmt | verify (condition) cmpdStmt otherwise cmpdStmt
+condition -> expression relation expression
+relation -> > | < | <= | >= | =
+untilStmt -> until relation cmpdStmt
+ioStmt -> read (IDENTIFIER) | write (value)
+valStmt -> val (value)
