@@ -78,6 +78,6 @@ fun main() {
     val parser = LR0Parser(g)
     parser.createCanonicalCollection()
     parser.createTables()
-    parser.parse("aabb$")
+    parser.parse("abbc$")
     parser.productionsResult.forEach { println(it) }
 }

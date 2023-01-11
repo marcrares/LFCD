@@ -2,4 +2,32 @@ LR0 ITEM
 
 - contains the left side of a production, the symbols on the right side, the position of the dot and the id of the
 corresponding production
--
+- goTo method moves the dot one position forward
+
+LR0 STATE
+
+- contains a list of LR0 ITEMS, a list of states that it generates and the symbol through which this state was created
+- closure method applies the closure on the state starting from the existing item
+
+LR0 PARSER
+
+- contains:
+    - the canonical collection
+    - the goTo and action tables
+    - the productions resulted after the parsing
+    - the number of states
+- createCanonicalCollection method creates the starting state from the first production with augmented grammar and
+generates all the other states
+    - iterates through the LR0 ITEMS of the current state and generates new states
+    - if the state hasn't already been created, it is added to a TEMP list of states
+    - the generated states are added to the nextStates element of the current states
+    - after iterating through all the items, the state is added to the canonical collection and another one is popped
+    from the TEMP list
+    - if a popped state has already been added to the canonical collection, it is skipped
+- createTables method creates the parsing table
+    - iterates through the states and their respective nextStates element and generates the tables
+    - checks for conflicts at the end, when adding the REDUCE actions
+- parse method parses an input string
+    - a stack is created and the "0" state is first added
+    - it pops an element from the stack and iterates through the input string and applies the appropriate action
+    - ends when the ACCEPTED action is found
